@@ -19,13 +19,20 @@ def get_die_code( die_code ):
     #   the highest two dice, etc, and -1 means take the lowest die, -2
     #   means take the lowest two dice, etc
     #   advantage is 2d20h1 (takes highest one), disadvantage is 2d20l1
+
+    
+    # remove comment for simplicity
+    hash_location = die_code.find('#')
+    if hash_location != -1:
+        COMMENT = die_code[hash_location+1:]
+        die_code = die_code[:hash_location]
+        die_code.replace(' ','')
     
     #finds the location of +, d, h, and l in the code
-    plus_locations = [n for n in range(len(die_code)) if die_code.find('+',n) == n] + [n for n in range(len(die_code)) if die_code.find('-',n) == n]
+    plus_locations = [-1,] + [n for n in range(len(die_code)) if die_code.find('+',n) == n] + [n for n in range(len(die_code)) if die_code.find('-',n) == n]
     plus_locations.sort()
     d_locations = [n for n in range(len(die_code)) if die_code.find('d',n) == n]
     lh_locations = [n for n in range(len(die_code)) if die_code.find('l',n) == n] + [n for n in range(len(die_code)) if die_code.find('h',n) == n]
-    hash_location = die_code.find('#')
     
     #defines starting values of outputs
     Z = 0
@@ -33,12 +40,6 @@ def get_die_code( die_code ):
     Y = []
     ADV = []
     COMMENT = ''
-
-    # remove comment for simplicity
-    if hash_location != -1:
-        COMMENT = die_code[hash_location+1:]
-        die_code = die_code[:hash_location]
-        die_code.replace(' ','')
 
     #if there aren't any dice being rolled, it's all just Z
     if d_locations == []:
@@ -69,7 +70,6 @@ def get_die_code( die_code ):
             #get how many were rolled (all numbers before 'd')
             if (plus_locations[i]+1-d_locations[i])!= 0:
                 X[i] = int(die_code[(plus_locations[i]+1):(d_locations[i])])
-                print(X[i])
             else:
                 X[i] = 1
             if die_code[plus_locations[i]] == '-':
@@ -159,11 +159,8 @@ while (die_code != "stop"):
         
         #save the result
         file = open(str(save_dir),"a")
-        file.write(time.ctime()+':    "'+die_code+'":    '+str(roll_total)+' '+str(roll_list)+' '+str(COMMENT)+'\n')
+        file.write(time.ctime()+':\n"'+die_code+'":\n'+str(roll_total)+' '+str(roll_list)+' '+str(COMMENT)+'\n\n')
         file.close()
         
         #display the result
         print(str(roll_total)+' '+str(roll_list))
-
-
-
