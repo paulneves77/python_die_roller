@@ -1,0 +1,21 @@
+Wed Aug 16 13:02:01 2017:
+"d6 #rolls a single six sided die":
+5 [5] 
+Wed Aug 16 13:02:18 2017:
+"2d6 #rolls two six sided dice and adds them together":
+6 [3, 3] 
+Wed Aug 16 13:02:25 2017:
+"2d6+5 #rolls two six sided dice and adds them together, then adds 5":
+7 [1, 1] 
+Wed Aug 16 13:02:36 2017:
+"d6+d8#rolls a d6 and a d8 and adds them together":
+8 [4, 4] 
+Wed Aug 16 13:02:43 2017:
+"2d20h1#rolls two d20s and then only counts the higher":
+10 [5, 10] 
+Wed Aug 16 13:03:05 2017:
+"2d20l1#rolls two d20s and then only counts the lower":
+5 [5, 7] 
+Wed Aug 16 13:03:14 2017:
+"2d20h1-d4+3 #rolls a d20 with advantage, subtracts a d4, and adds 3":
+11 [3, 12, -4] 
