@@ -1,14 +1,14 @@
 # this code is designed to query a user for a die code, simulate that roll
 # with pseudo random number generators, and save that output to a selected file
 
-# start messages
-print("Type 'help' in the die code to see examples\nOr 'stop' to end the program\n")
-
 # initialize values
 import random
 import time
 die_code = '0'
 save_dir = raw_input("Save file name: ")
+
+# start messages
+print("Type 'help' in the die code to see examples\nOr 'stop' to end the program\n")
 
 def get_die_code( die_code ):
     #   GET_DIE_CODE extracts X, Y, and Z from string 'X1dY1+X2dY2+...+Z'
